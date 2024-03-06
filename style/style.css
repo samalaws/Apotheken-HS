@@ -1,0 +1,305 @@
+
+:root{
+    --orange: #ff6b00;
+    --green: #00ff00; 
+    --background: #121212;
+    --darkgray: #181818;
+    --fontColor: #fdfdfd;
+    --gray: #aaaaaa;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Tahoma, sans-serif;
+    
+}
+body{
+    background-color: var(--background);
+    color: var(--fontColor);
+}
+
+#container{
+    width: 85%;
+    margin: auto;
+}
+/* Start navbar */
+#logo-bar{
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+}
+#logo-holder{
+    width: 60%;
+    margin: auto;
+}
+#logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--fontColor);
+    padding: 0;
+}
+#icon-holder{
+    width: 40%;
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    margin-right: auto;
+}
+#home,
+#admin,
+#add{
+    color: var(--gray);
+}
+/* Ende navbar */
+
+/* Start options */
+#options{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.label-span{
+    padding: 10px 0 15px;
+    font-size: 0.8rem;
+}
+select {
+    width: 300px;
+    height: 30px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #454545;
+    background: var(--darkgray);
+    border: none;
+    outline: none;
+    display: inline-block;
+    appearance: none;
+    cursor: pointer;
+    color: var(--fontColor);
+}
+.stadt{
+    color: var(--gray);
+}
+/*
+#ff6b00 orange
+#121212 backgrond
+#181818 darkgray
+#fdfdfd font color
+#aaaaaa gray
+
+
+
+.select-box = #options
+.label select-box1 = .label-select
+.label-desc = label-span 
+#select-box1 .select = menu
+*/
+#search-holder{
+    display: flex;
+    justify-content: space-between;
+}
+
+#info{
+    margin: 15px 0 5px 0;
+    padding: 0;
+}
+#search{
+    width: 100px;
+    height: 30px;
+    border: 1px solid var(--gray);
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: var(--background);
+    color: var(--fontColor);
+}
+#search:hover{
+    font-weight: bold;
+    background-color: var(--orange);
+    color: var(--gray);
+    border: none;
+}
+/* Ende options */
+
+#cards{
+    border-radius: 5px;
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+.card{
+    background-color: var(--darkgray);
+    border-radius: 5px;
+    margin:25px auto ;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+#card-header{
+    background-color: var(--darkgray);
+    border-radius: 5px;
+    width: 100%;
+    padding: 15px 0;
+}
+.apo-name{
+    background-color: var(--darkgray);
+    padding-left:20%  ;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+}
+.photo{
+    width: 200px;
+    height: auto;
+    margin: auto;
+    padding-top: 10px;
+    background-color: var(--darkgray);
+
+}
+.address{
+    background-color: var(--darkgray);
+}
+.phone{
+    background-color: var(--darkgray);
+    padding-bottom: 10px; 
+}
+.div-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--darkgray);
+    border-radius: 5px;
+}
+.material-symbols-outlined{
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--darkgray);
+}
+.website{
+    color: var(--fontColor);
+}
+#home, #admin{
+    background-color: var(--background);
+}
+#home:hover, #admin:hover{
+    color: var(--orange)
+}
+.material-symbols-outlined:hover{
+    color: var(--green);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s
+}
+.notdiesnt{
+    color: var(--green);
+}
+span{
+    display: block;
+    font-size: 0.75rem;
+    padding: 5px 0px 0 25px;
+}
+.close{
+    color: var(--orange);
+}
+.open{
+    color: var(--green);
+
+}
+.favorite{
+    color: var(--green);
+}
+
+/* Start Admin - Add */
+
+#form{
+    margin: 25px 0;
+    border: 5px solid #333333;
+    border-radius: 5px;
+    padding: 25px;
+
+}
+
+.div{
+    padding: 5px 0;
+}
+
+.label{
+    min-width: 25%;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+input{
+    margin: 0 5px 0 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+.save{
+    width: 100px;
+    margin-top: 15px;
+    padding: 5px 0;
+    background-color: var(--orange);
+    color: white;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+/* End Admin - Add */
+
+/* start Admin - Table */
+
+th, td{
+    margin-top: 25px;
+    border: 1px solid;
+    font-size: 0.8rem;
+    padding: 2px 3px;
+}
+table{
+    border: 1px solid;
+    width: 100%;
+}
+#delete,
+#edit{
+    color: var(--fontColor);
+    margin: 0 5px;
+    cursor: pointer;
+}
+#edit{
+    padding: 0 10px;
+    background-color: var(--green);
+    color: var(--darkgray);
+}
+#delete{
+    background-color: var(--orange);
+    padding: 0 5px;
+
+}
+
+/* End Admin - Table */
+
+/* Start map  */
+
+#map{
+    width: 650px;
+    height: 550px;
+    border: 1px solid #ff6b00;
+    margin: auto;
+}
+
+div.modal-info > div#hrymap > div#map.leaflet-container {
+    width: 868px;
+    height: 650px;
+}
+
+
+#map span{
+    padding: 0;
+}
+
+
+
+/*  Ende map   */
