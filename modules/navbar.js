@@ -50,7 +50,7 @@ export function loadNavbar(){
     iconHolder.append(homeSpan);
 
 // create div = adminSpan, set id, className,  innerHTML and append
-const adminSpan = create("span");
+    const adminSpan = create("span");
     adminSpan.setAttribute("id", "admin");
     adminSpan.className = "material-symbols-outlined";
     adminSpan.innerHTML = "settings"; // Admin icon in Navbar

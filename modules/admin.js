@@ -1,37 +1,33 @@
 import { data } from "./loadData.js";
-import { el, create, group } from "./lib.js";
-import{createNewForm,obj,saveNewData,updateFormData} from "./add.js";
+import { el, create } from "./lib.js";
+import{createNewForm,obj,updateFormData} from "./add.js";
 import { db } from "./db.js";
-import {adminPage} from "./main.js";
 
-// i need to add website data to my data
-
-
+// Run and SHOW the Data from DB 
+// Give the ADMIN the opportunity to view, modify or delete the data items
+// Function to create new table in Admin Page
 export function createTabel(){
 
-    //console.log(data);
 
-    if(el("table")){
-        el("table").remove();
+    if(el("table")){ // if table exist
+        el("table").remove(); // remove it
     }
-    if(el("#form")){
-        el("#form").remove();
+    if(el("#form")){ // if form exist
+        el("#form").remove(); // remove it
     }
-    if(el("#options")){
-        el("#options").remove();
+    if(el("#options")){ // if options in navbar exist
+        el("#options").remove(); // remove it
     }
 
-    const container = el('#container');
-    const table = create('table');
-    let tr = "";
-    let th = "";
-    let td  = "";
-    let button = "";
+    const container = el('#container'); // get container element
+    const table = create('table'); // create new table element
+    let tr = ""; // empty tr element
+    let th = ""; // empty th element
+    let td  = ""; // empty td element
+    let button = ""; // empty button
 
-    tr = create("tr");
-//    th = create("th");
-//    th.innerHTML = "ID";
-//    tr.append(th);
+    tr = create("tr"); // create tr
+// create, innerHTML and appent elements of th then appen them in tr
     th = create("th")
     th.innerHTML = "Name";
     tr.append(th);
@@ -44,45 +40,20 @@ export function createTabel(){
     th = create("th")
     th.innerHTML = "Telephone";
     tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Photo Path";
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Latitude";
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Longitude";
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Notdienst";
-//    tr.append(th);
+
     th = create("th")
     th.innerHTML = "Notdienst date";
     tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Opining Saturday";
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Closing Saturday";
-//    tr.append(th);
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Opining Weekdays";
-//    tr.append(th);
-//    th = create("th")
-//    th.innerHTML = "Closing Weekdays";
-//    tr.append(th);
-    table.append(tr);
-    
-    data.forEach((val)=>{
-        tr      = create('tr');
-//        td      = create('td');
-//        const id            = val.id;
-//        td.innerHTML        = id;
-//        tr.append(td);
 
-        td      = create('td');
-        const name          = val.apothekeName;
+    table.append(tr); // append tr in tabel
+    
+    data.forEach((val)=>{ // for each the data to get values
+
+        // create tr and td elements and get values and innerHTMl them in the elements
+        tr      = create('tr');
+
+        td      = create('td'); 
+        const name          = val.apothekeName; // 
         td.innerHTML        = name;
         tr.append(td);
 
@@ -101,65 +72,20 @@ export function createTabel(){
         td.innerHTML        = telephone;
         tr.append(td);
 
-//        td      = create('td');
-//        const logo          = val.apothekeLogo;
-//        td.innerHTML        = logo;
-//        tr.append(td);
-
-        // td      = create('td');
-        // const latitude      = val.latitude;
-        // td.innerHTML        = latitude;
-        // tr.append(td);
-
-        // td      = create('td');
-        // const longitude     = val.longitude;
-        // td.innerHTML        = longitude;
-        // tr.append(td);
-
-        // td      = create('td');
-        // const notdienst     = val.notdienst;
-        // td.innerHTML        = notdienst;
-        // tr.append(td);
-
         td      = create('td');
         const notdienstData = val.notdienstData;
         td.innerHTML        = notdienstData;
         tr.append(td);
 
-        // td      = create('td');
-        // const samsstagOpen  = val.samsstagOpen;
-        // td.innerHTML        = samsstagOpen;
-        // tr.append(td);
-
-        // td      = create('td');
-        // const samsstagClose = val.samsstagClose;
-        // td.innerHTML        = samsstagClose;
-        // tr.append(td);
-
-        // td      = create('td');
-        // const werktageOpen  = val.werktageOpen;
-        // td.innerHTML        = werktageOpen;
-        // tr.append(td);
-
-        // td      = create('td');
-        // const werktageClose = val.werktageClose;
-        // td.innerHTML        = werktageClose;
-        // tr.append(td);
         
-        button = create("button")
+        button = create("button") // create edit button
         button.setAttribute('id', "edit");
-        button.setAttribute('key', val.id);
-        button.addEventListener("click", function(){
-            console.log("edit is clicked");
-//            console.log(data);
-//            console.log(this);
-            const key = this.getAttribute('key');
-            console.log(key);
-            console.log(this);
+        button.setAttribute('key', val.id); // set value id for it as ID to connent it with the right value
+        button.addEventListener("click", function(){ // add EventListener for Edit button
+            const key = this.getAttribute('key'); 
             data.forEach((val)=>{
-//                console.log(val.id);
                 if(val.id == key){
-//                    console.log(val.apothekeName);
+// create new form and set the values of the selected data item in the form elements
                     createNewForm(
                         obj.id          = val.id,
                         obj.apoName     = val.apothekeName,
@@ -175,56 +101,50 @@ export function createTabel(){
                 }
                 
             });
-            const saveBtn = el('#save');
-//            console.log(val.id);
-//            console.log(val);
-//            console.log(saveBtn)
-//            console.log(key);
-            db.deleteItem(key);
-            updateFormData(
-                val.id,
+            const saveBtn = el('#save'); // when save button was clicked
+            db.deleteItem(key); // deledte the old item from DB
+            updateFormData( // run update form data function
+                val.id, 
                 saveBtn,
                 val
             );
-            console.log(key);
+//            console.log(key);
         });
-        button.innerHTML = "Edit";
-        tr.append(button);
+        button.innerHTML = "Edit"; // set inner HTML for it
+        tr.append(button); // append edit button in tr element
 
-        const btn = create("button")
-        btn.setAttribute('id', "delete");
+        const btn = create("button") // delete item button
+        btn.setAttribute('id', "delete"); 
         btn.innerHTML = "Delete";
-        btn.setAttribute('key', val.id);
+        btn.setAttribute('key', val.id);// set value id for it as ID to connent it with the right data item (val.id = id of the data item)
 
-        btn.addEventListener("click", function(){
-            const key = this.getAttribute('key');
-            console.log("key is: "+key);
-            db.deleteItem(key);
-            console.log(`${this} is deleted`);
-            this.closest('div').remove();
-            window.location.reload();
+        btn.addEventListener("click", function(){ // when clicked then run this function
+            const key = this.getAttribute('key'); 
+            db.deleteItem(key); // delete the item from DB
+            this.closest('div').remove(); // remove the item from html
+            window.location.reload(); // reload the app
         });
         tr.append(btn);
 
         table.append(tr);
+
     })
     container.append(table);
 
     
-    if(!el('#add')){
-//        console.log("child is not exiset");
-        addButton();
-        el('#add').addEventListener('click',createNewForm);
-    }else if(el('#add')){
-        if(el("#form")){
-            el("#form").remove();
+    if(!el('#add')){ // if add button not exist
+        addButton(); // run add button function
+        el('#add').addEventListener('click',createNewForm); // when clicked  run createNewForm function
+    }else if(el('#add')){ // otherwise if was exist
+        if(el("#form")){  // if from esixt
+            el("#form").remove(); // then remove it
         }
     }
     
 }
 
-function addButton(){
-    const span      = create('span');
+function addButton(){ // add button function -> Add button in NAVBAR
+    const span      = create('span'); 
     span.className  = "material-symbols-outlined";
     span.setAttribute("id", "add");
     span.innerHTML  = "add";

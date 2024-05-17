@@ -5,29 +5,18 @@ import { removeAllElement } from "./remove-container.js";
 import {setFavorite, showCards, global} from "./main.js";
 
 
-// create createNavbar()
-/*
--- call removeAllElement();
--- call loadNavbar();
--- call showCards();
--- setFavorite();
-*/
-
-
-
 export function createNavbar(){
 
     let citys = []; // get city values from data array an push it in new array
     data.forEach((val)=>{
         citys.push(val.city);
     })
-//    console.log(citys);
     const uniqeCitys = new Set(citys); // set uniqe city values in new array
 //    console.log(uniqeCitys);
 
     removeAllElement(); // call removeAllElement() to remove container and all elements in it
     loadNavbar(); // call loadNavbar()
-//    global.counter = 0;
+    global.counter = 0;
 // select navbar element
     const navbar = el('#navbar');
 
@@ -78,7 +67,6 @@ uniqeCitys.forEach((val)=>{
         select.append(mOption);
     });
     
-//    let counter = 0; // i need to change this to get the right number of
     const searchHolder = create("div"); // create new div searchHolder as container
     searchHolder.setAttribute("id","search-holder"); // set id
     options.append(searchHolder); // append div in options

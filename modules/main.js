@@ -24,13 +24,6 @@ export const global = {counter : 0}; // set variable counter
 
 let map; // declaration map varible
 
-// const date = new Date();
-// const day = `0${date.getDate()}`;
-// const month = `0${date.getMonth()+1}`;
-// const year = date.getFullYear();
-// export const fullDate = `${year}-${month}-${day}`;
-
-
 // create function retun the date of today
 export function createTodayDate(){
     const date = new Date();
@@ -42,7 +35,6 @@ export function createTodayDate(){
 }
 
 
-
 // create home page elements
 export async function homePage(){
 
@@ -50,6 +42,7 @@ export async function homePage(){
     el('#home').addEventListener('click', homePage); // EventListener for home button call home page function
     el('#admin').addEventListener('click', adminPage); // EventListener for admin button call admin page function
     el("#search").addEventListener('click', homePage); // EventListener for search button call home page function
+
 }
 
 // create admin page elements
@@ -93,7 +86,6 @@ export function checkOpenDoor(span){
             {
                 if ( timeNow >= "08:00" || timeNow < "18:30"){ // if time now MORE than or equal  to 08.00 OR less than 18:30
                     span.className = span.className + "open"; // set class open = green color
-                    console.log("open is active");
                 }
                 else{ // otherwise
                     span.className = span.className + "close"; // set class colse = orange color
@@ -148,10 +140,6 @@ export function showCards(){
         const cards = create("div"); // create new div named cards -> as container for card
         cards.setAttribute("id","cards"); // give cards id = cards 
         container.append(cards); // append cards in container
-        const myMap = create('div'); // create new div named map to show the map in it
-        myMap.setAttribute('id','map') // give map id = map
-        myMap.style.display = "none"; // set map as display none
-        container.append(myMap); // append map in container
     }
 
     createContainer(); // call funtion
@@ -197,7 +185,6 @@ export function showCards(){
 // here should delete map container -> 
         el('#map').remove();
         createMap(); // create new map
-
     }
     );
     
@@ -264,10 +251,9 @@ export function showCards(){
         span.innerHTML = "favorite"; // set inner HTMl value        
         div.append(span); // append span in div container
         el("#info").innerHTML = `Total: ${global.counter} Apotheken`; // innerHTML counter = apo count
-        el('#map').style.display = "none"; // set map element as display none
 
     }
-    createMap(); // call create map function
+    createMap();
 }
 
 setFavorite(); // call set favorite function
@@ -275,42 +261,45 @@ setFavorite(); // call set favorite function
 
 // function to create map
 export async function createMap(){
-    const container = el("#container"); 
+    
+    const container = el("#container");
+    const mapContainer = create("div");
+    mapContainer.setAttribute('id', 'mapContainer');
+    const myMap = create('div'); // create new div named map to show the map in it
+    myMap.setAttribute('id','map') // give map id = map
+    mapContainer.append(myMap);
+    container.append(mapContainer); // append map in container
+
+
     const cards = el("#cards");
     const card = el(".card");
-
+    
+    let setViewCordinat = [51.05947644537415, 6.122798424298746];
+    map = map = L.map('map').setView(setViewCordinat, 10);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
     if(container && cards){ // if container and cards are exist
-
         if(card){ // if card exist
-            console.log(data);
+            
             group('.card span').forEach((e)=>{ // set searching group to get all spans in card
                 if( e.classList.contains("map")){ // if span has class map
-//                    console.log(e);
                     e.addEventListener('click', ()=>{ // then add EventListener to it
-//                        console.log(e.id);
-//
                         data.forEach((val)=>{ 
                             // for each loop to get value in data array
                             if(val.apothekeTelephone == e.id){ // if tel number equal to span element id
-                                console.log(val.longitude); 
-                                console.log(val.latitude);
-                                const setViewCordinat = [51.060284843574934, 6.132518004443505];
-    //                            map.remove();
-                                // set cordinat values in setViewCordinat
-//                                console.log("cordinat: "+setViewCordinat);
-                                map = L.map('map').setView(setViewCordinat,10);
-                                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                }).addTo(map);
+                                setViewCordinat = [ val.latitude, val.longitude] ;
                                 cards.style.display = "none";
-                                el('#map').style.display = "block";
+//                                el('#map').style.display = "block";
                                 showAposOnMap(); // call show apos on map function
+                                map.flyTo(setViewCordinat,17);
                             }
                         });
                     });
                 }
             })
-        } 
+        }
     }
 }
 // show apos on map function
@@ -319,7 +308,6 @@ export async function createMap(){
 export async function showAposOnMap(){ 
     let positions  = []
     data.forEach((val)=>{ 
-        
         positions = [val.latitude,val.longitude];
         const content = `
                         <h5>Info: ${val.apothekeName}</h5>
@@ -330,10 +318,7 @@ export async function showAposOnMap(){
         L.marker(positions)
         .bindPopup(content).addTo(map)
     })
-    map.flyTo(positions,15);
 }
-
-
 
 export function serviceWorkerAktiv(){
     if ('serviceWorker' in navigator){

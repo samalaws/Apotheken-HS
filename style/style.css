@@ -17,6 +17,9 @@ body{
     background-color: var(--background);
     color: var(--fontColor);
 }
+.hide{
+    opacity: 0%;
+}
 
 #container{
     width: 85%;
@@ -284,10 +287,11 @@ table{
 /* Start map  */
 
 #map{
-    width: 650px;
+    width: 100%;
     height: 550px;
-    border: 1px solid #ff6b00;
+    border: 2px solid var(--orange);
     margin: auto;
+
 }
 
 div.modal-info > div#hrymap > div#map.leaflet-container {
