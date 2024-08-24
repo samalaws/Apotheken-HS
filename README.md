@@ -1,29 +1,25 @@
-Apotheken-HS is a test web application project designed to simplify pharmacy discovery and management.
-Built using HTML, CSS, and JavaScript, it provides a user-friendly interface for both pharmacy patrons and administrators.
+Project Name: HS-Apo (short for Heinsberg Area Pharmacies)
+Technologies Used: JavaScript, CSS, HTML, Leaflet
 
-Features:
+Project Overview:
+HS-Apo is a web application designed to provide users with a comprehensive list of pharmacies in the Heinsberg area. The application presents pharmacy information in a user-friendly card format, displaying essential details such as the pharmacy's name, phone number, address, location coordinates, and operating hours.
 
-Homepage Pharmacy Listing:
-Pharmacies added by the admin will be displayed on the homepage, each presented in a visually appealing card format.
-Pharmacy Card Information:
-Each pharmacy card will showcase essential details, including:
-Name: Clearly identifies the pharmacy.
-Photo/Logo: Visually represents the pharmacy.
-Address: Provides the pharmacy's physical location.
-Phone Number: Enables direct contact with the pharmacy.
-Pharmacy Card Icons:
-Icons within the card will offer quick access to additional functionalities:
-Open/Close Status: Indicate whether the pharmacy is currently open or closed.
-Website Link: Directly opens the pharmacy's website in a new tab.
-Map Location: Utilizes Leaflet to display the pharmacy's location on a map for easy navigation.
-Emergency Service Today: If the pharmacy has Emergency Service in the same day.
-Favorite Icon: Allows users to add frequently visited pharmacies to a favorites list for convenient access.
-Interactive Map on Homepage:
-The homepage will integrate a Leaflet map, enabling users to visually explore the locations of listed pharmacies.
-Admin Panel:
-A dedicated admin panel will provide functionalities for:
-Adding New Pharmacies: Create new pharmacy entries with all necessary details.
-Editing Existing Pharmacies: Modify information for existing pharmacies as needed.
-Deleting Pharmacies: Remove pharmacies from the listings when necessary.
-Local Storage:
-Pharmacy data will be stored locally within the user's browser for offline accessibility.
+By leveraging the Leaflet mapping library, HS-Apo enables users to visualize the locations of all listed pharmacies on an interactive map.
+
+Core Objectives:
+
+Single-Page Application (SPA): The primary goal of this project was to implement a SPA using JavaScript. By dynamically updating the page content without full reloads, we aimed to create a more responsive and engaging user experience.
+Custom JavaScript Development: To avoid relying on established frameworks like React or Angular, we focused on building the application from scratch using plain JavaScript. This approach allowed for greater customization and a deeper understanding of the underlying technologies.
+User-Friendly Interface: The application's design emphasizes simplicity and ease of use. The card-based layout and interactive map provide a clear and intuitive way for users to find the information they need.
+Key Features:
+
+Pharmacy Directory: A comprehensive list of pharmacies in the Heinsberg area.
+Interactive Map: A visual representation of pharmacy locations, powered by the Leaflet mapping library.
+Location-Based Search: Enables users to find the nearest pharmacy based on their current location.
+Detailed Pharmacy Information: Provides users with essential contact information and operating hours for each pharmacy.
+Technical Implementation:
+
+JavaScript: Used for all client-side logic, including data fetching, DOM manipulation, and map interactions.
+CSS: Employed to style the application's user interface and create a visually appealing design.
+HTML: Provides the basic structure of the web pages.
+Leaflet: Used to create the interactive map and display pharmacy locations.
